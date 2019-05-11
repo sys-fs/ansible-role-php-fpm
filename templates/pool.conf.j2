@@ -1,0 +1,48 @@
+[{{ item.name }}]
+
+user = www-data
+group = www-data
+
+{% if item.listen is defined %}
+listen = {{ item.listen }}
+listen.allowed_clients = {{ item.listen_allowed_clients | default('127.0.0.1') }}
+{% else %}
+listen = /run/php/php{{ php_fpm_version }}-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+{% endif %}
+
+pm = {{ item.pm }}
+pm.max_children = {{ item.pm_max_children | default('20') }}
+{% if item.pm == 'dynamic' %}
+pm.start_servers = {{ item.pm_start_servers | default('5') }}
+pm.min_spare_servers = {{ item.pm_min_spare_servers | default('5') }}
+pm.max_spare_servers = {{ item.pm_max_spare_servers | default('5') }}
+{% elif item.pm == 'ondemand' %}
+pm.process_idle_timeout = {{ item.pm_process_idle_timeout | default('10s') }}
+{% endif %}
+pm.max_requests = {{ item.pm_max_requests | default('500') }}
+
+{% if item.php_admin_flags is defined %}
+{% for flag in item.php_admin_flags %}
+php_admin_flag[{{ flag.name }}] = {{ flag.value }}
+{% endfor %}
+{% endif %}
+
+{% if item.php_flags is defined %}
+{% for flag in item.php_flags %}
+php_flag[{{ flag.name }}] = {{ flag.value }}
+{% endfor %}
+{% endif %}
+
+{% if item.php_admin_values is defined %}
+{% for value in item.php_admin_values %}
+php_admin_value[{{ value.name }}] = {{ value.value }}
+{% endfor %}
+{% endif %}
+
+{% if item.php_values is defined %}
+{% for value in item.php_values %}
+php_value[{{ value.name }}] = {{ value.value }}
+{% endfor %}
+{% endif %}

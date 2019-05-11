@@ -1,0 +1,31 @@
+---
+- name: Ensure ca-certificates is present
+  apt:
+    name: ca-certificates
+    update_cache: true
+
+- name: Enable ondrej PPA
+  apt_repository:
+    repo: 'ppa:ondrej/php'
+    # Tests fail unless explictly setting the distro release
+    codename: '{{ ansible_distribution_release }}'
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Ensure apt-transport-https is present
+  apt:
+    name: apt-transport-https
+  when: ansible_distribution == 'Debian'
+
+- name: Import sury.org key
+  apt_key:
+    url: 'https://packages.sury.org/php/apt.gpg'
+  when: ansible_distribution == 'Debian'
+
+- name: Enable sury.org repo
+  apt_repository:
+    repo: 'deb https://packages.sury.org/php/ {{ ansible_distribution_release }} main'
+  when: ansible_distribution == 'Debian'
+
+- name: Install PHP packages
+  apt:
+    name: '{{ php_fpm_packages }}'

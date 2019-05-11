@@ -1,0 +1,5 @@
+---
+# vars file for ansible-role-php-fpm
+php_fpm_version: '{{ php_fpm_packages[0] | regex_search("([0-9]\.[0-9])") }}'
+php_fpm_config_path: '/etc/php/{{ php_fpm_version }}/fpm'
+php_fpm_daemon: 'php{{ php_fpm_version }}-fpm'

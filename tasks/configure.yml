@@ -1,0 +1,12 @@
+---
+- name: Remove default pool
+  file:
+    name: '{{ php_fpm_config_path }}/pool.d/www.conf'
+    state: absent
+
+- name: Configure pools
+  template:
+    src: pool.conf.j2
+    dest: '{{ php_fpm_config_path }}/pool.d/{{ item.name }}.conf'
+  loop: '{{ php_fpm_pools }}'
+  notify: Restart php-fpm

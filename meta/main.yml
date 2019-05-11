@@ -1,0 +1,27 @@
+---
+galaxy_info:
+  author: Thomas Mannay
+  role_name: php-fpm
+  description: This role installs php-fpm from sury.org on Debian and Ubuntu.
+
+  license: MIT
+
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+
+  min_ansible_version: 2.5
+
+  galaxy_tags:
+    - php
+    - phpfpm
+    - ubuntu
+    - debian
+
+dependencies: []
