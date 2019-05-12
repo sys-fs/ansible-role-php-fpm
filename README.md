@@ -36,14 +36,14 @@ Example Playbook
     - hosts: php
 	  vars:
 	    - php_fpm_pools:
-		    - name: dev
-			  pm: static
-			  pm_max_children: 100
-	          php_admin_values:
-                - name: memory_limit
-                  value: '512M'
-			    - name: 'opcache.enable'
-				  value: 0
+           - name: dev
+             pm: static
+             pm_max_children: 100
+             php_admin_values:
+               - name: memory_limit
+                 value: '512M'
+               - name: 'opcache.enable'
+                 value: 0
       roles:
         - sys-fs.php-fpm
 
