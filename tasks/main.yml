@@ -1,4 +1,8 @@
 ---
 # tasks file for ansible-role-php-fpm
 - include_tasks: install.yml
+  tags:
+    - php_fpm_install
 - include_tasks: configure.yml
+  tags:
+    - php_fpm_configure
