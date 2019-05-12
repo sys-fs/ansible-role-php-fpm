@@ -1,8 +1,17 @@
 ---
+- name: Check if www.conf is ansible managed
+  lineinfile:
+    path: '{{ php_fpm_config_path }}/pool.d/www.conf'
+    regexp: '^# ansible managed$'
+    state: absent
+  check_mode: true
+  register: pool
+
 - name: Remove default pool
   file:
-    name: '{{ php_fpm_config_path }}/pool.d/www.conf'
+    path: '{{ php_fpm_config_path }}/pool.d/www.conf'
     state: absent
+  when: pool is not changed
 
 - name: Configure pools
   template:
