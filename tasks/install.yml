@@ -4,24 +4,24 @@
     name: ca-certificates
     update_cache: true
 
-- name: Enable ondrej PPA
+- name: Enable ondrej PPA [Ubuntu]
   apt_repository:
     repo: 'ppa:ondrej/php'
     # Tests fail unless explictly setting the distro release
     codename: '{{ ansible_distribution_release }}'
   when: ansible_distribution == 'Ubuntu'
 
-- name: Ensure apt-transport-https is present
+- name: Ensure apt-transport-https is present [Debian]
   apt:
     name: apt-transport-https
   when: ansible_distribution == 'Debian'
 
-- name: Import sury.org key
+- name: Import sury.org key [Debian]
   apt_key:
     url: 'https://packages.sury.org/php/apt.gpg'
   when: ansible_distribution == 'Debian'
 
-- name: Enable sury.org repo
+- name: Enable sury.org repo [Debian]
   apt_repository:
     repo: 'deb https://packages.sury.org/php/ {{ ansible_distribution_release }} main'
   when: ansible_distribution == 'Debian'
