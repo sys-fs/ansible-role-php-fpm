@@ -10,7 +10,7 @@
   file:
     path: '{{ php_fpm_config_path }}/pool.d/www.conf'
     state: absent
-  when: pool not changed
+  when: pool is changed
 
 - name: Configure pools
   template:
