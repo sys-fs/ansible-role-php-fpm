@@ -13,8 +13,7 @@ services:
   - docker
 
 install:
-  - pip install ansible=="$ANSIBLE" molecule docker
+  - pip install ansible=="$ANSIBLE*" molecule docker
 
 script:
-  - ansible --version
   - molecule test
