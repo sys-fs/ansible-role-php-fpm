@@ -2,8 +2,7 @@
 - name: Check if www.conf is ansible managed
   lineinfile:
     path: '{{ php_fpm_config_path }}/pool.d/www.conf'
-    regexp: '^; ansible managed$'
-    state: absent
+    line: '^; ansible managed$'
   check_mode: true
   register: pool
 
@@ -11,7 +10,7 @@
   file:
     path: '{{ php_fpm_config_path }}/pool.d/www.conf'
     state: absent
-  when: pool is not changed
+  when: pool not changed
 
 - name: Configure pools
   template:
