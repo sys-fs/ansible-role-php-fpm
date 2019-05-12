@@ -31,7 +31,7 @@ List of pools to create. There are many optional variables than can be defined
 within a pool. The following table details the pool variables:
 
 Name | Default | Description
-----------------------------
+---- | ------- | -----------
 name | www     | The name of the pool. Also affects the name of the socket when type is unix.
 type | '' | The type of socket to listen on. Can be either 'tcp' or 'unix'. Must be specified.
 listen | 127.0.0.1:9000 | Address and port to listen on when type is tcp.
