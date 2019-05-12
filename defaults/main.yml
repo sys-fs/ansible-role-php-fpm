@@ -19,6 +19,7 @@ php_fpm_packages:
 
 php_fpm_pools:
   - name: www
+    type: unix
     pm: dynamic
     php_admin_values:
       - name: memory_limit

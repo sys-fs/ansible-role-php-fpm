@@ -5,11 +5,13 @@
 user = www-data
 group = www-data
 
-{% if item.listen is defined %}
-listen = {{ item.listen }}
-listen.allowed_clients = {{ item.listen_allowed_clients | default('127.0.0.1') }}
-{% else %}
-listen = /run/php/php{{ php_fpm_version }}-fpm.sock
+{% if item.type == 'tcp' %}
+listen = {{ item.listen | default('127.0.0.1:9000') }}
+{% if item.listen_allowed_clients is defined %}
+listen.allowed_clients = {{ item.listen_allowed_clients }}
+{% endif %}
+{% elif item.type == 'unix' %}
+listen = /run/php/{{ item.name }}-fpm.sock
 listen.owner = www-data
 listen.group = www-data
 {% endif %}
