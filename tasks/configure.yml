@@ -4,13 +4,13 @@
     path: '{{ php_fpm_config_path }}/pool.d/www.conf'
     line: '; ansible managed'
   check_mode: true
-  register: pool
+  register: _pool
 
 - name: Remove default pool
   file:
     path: '{{ php_fpm_config_path }}/pool.d/www.conf'
     state: absent
-  when: pool is changed
+  when: _pool is changed
 
 - name: Configure pools
   template:
