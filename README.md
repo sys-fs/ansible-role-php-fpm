@@ -1,4 +1,4 @@
-sys-fs.php-fpm
+sys_fs.php\_fpm
 ==============
 
 This role installs and configures php-fpm from the sury.org repo on Ubuntu and
@@ -64,7 +64,7 @@ Example Playbook
                - name: 'opcache.enable'
                  value: 0
       roles:
-        - sys-fs.php-fpm
+        - sys_fs.php_fpm
 
 License
 -------
