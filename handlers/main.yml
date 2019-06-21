@@ -1,6 +1,7 @@
 ---
 # handlers file for ansible-role-php-fpm
 - name: Restart php-fpm
+  become: True
   service:
     name: '{{ php_fpm_daemon }}'
     state: restarted
