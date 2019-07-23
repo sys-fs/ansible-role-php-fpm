@@ -28,25 +28,25 @@ pm.process_idle_timeout = {{ item.pm_process_idle_timeout | default('10s') }}
 pm.max_requests = {{ item.pm_max_requests | default('500') }}
 
 {% if item.php_admin_flags is defined %}
-{% for key, value in item.php_admin_flags.items() %}
-php_admin_flag[{{ key }}] = {{ value }}
+{% for flag in item.php_admin_flags %}
+php_admin_flag[{{ flag.name }}] = {{ flag.value }}
 {% endfor %}
 {% endif %}
 
 {% if item.php_flags is defined %}
-{% for key, value in item.php_flags.items() %}
-php_flag[{{ key }}] = {{ value }}
+{% for flag in item.php_flags %}
+php_flag[{{ flag.name }}] = {{ flag.value }}
 {% endfor %}
 {% endif %}
 
 {% if item.php_admin_values is defined %}
-{% for key, value in item.php_admin_values.items() %}
-php_admin_value[{{ key }}] = {{ value }}
+{% for value in item.php_admin_values %}
+php_admin_value[{{ value.name }}] = {{ value.value }}
 {% endfor %}
 {% endif %}
 
 {% if item.php_values is defined %}
-{% for key, value in item.php_values.items() %}
-php_value[{{ key }}] = {{ value }}
+{% for value in item.php_values %}
+php_value[{{ value.name }}] = {{ value.value }}
 {% endfor %}
 {% endif %}

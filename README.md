@@ -24,7 +24,7 @@ List of PHP packages to install.
 	    type: unix
         pm: dynamic
         php_admin_values:
-          - name: memory_limit
+          memory_limit
             value: '128M'
 
 List of pools to create. There are many optional variables than can be defined

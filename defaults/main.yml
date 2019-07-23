@@ -22,4 +22,5 @@ php_fpm_pools:
     type: unix
     pm: dynamic
     php_admin_values:
-      memory_limit: '128M'
+      - name: memory_limit
+        value: '128M'
