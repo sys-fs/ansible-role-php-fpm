@@ -7,7 +7,7 @@
 - name: Check if www.conf is ansible managed
   lineinfile:
     path: '{{ php_fpm_config_path }}/pool.d/www.conf'
-    line: '; ansible managed'
+    line: '; Ansible managed'
   check_mode: true
   register: _pool
   when: _pool_exists.stat.path is defined
