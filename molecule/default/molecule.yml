@@ -6,26 +6,26 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: bionic
-    image: paulfantom/ubuntu-molecule:18.04
+  - name: focal
+    image: paulfantom/ubuntu-molecule:20.04
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
     pre_build_image: true
-  - name: xenial
-    image: paulfantom/ubuntu-molecule:16.04
+  - name: jammy
+    image: paulfantom/ubuntu-molecule:22.04
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
     pre_build_image: true
-  - name: stretch
-    image: paulfantom/debian-molecule:9
+  - name: buster
+    image: paulfantom/debian-molecule:10
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
     pre_build_image: true
-  - name: jessie
-    image: paulfantom/debian-molecule:8
+  - name: bullseye
+    image: paulfantom/debian-molecule:11
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
